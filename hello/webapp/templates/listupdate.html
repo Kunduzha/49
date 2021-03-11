@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block menu %}
+    <li><a href="{% url "list_more" list.pk %}">back</a></li>
+{% endblock %}
+{% block content %}
+
+{#    {{ form.as_p }}#}
+    <form action="" method="post">
+        {% include 'list_form.html' with button_text="создать"%}
+    </form>
+
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Удалить запись{% endblock %}
+{% block menu %}
+    <li><a href="{% url 'list_more' list.pk %}">Назад</a></li>
+{% endblock %}
+{% block content %}
+    <h1>Точно хотите удалить? </h1>
+    <form method="POST" action="{% url "delete_list" list.pk %}" class="text-center">
+        {% csrf_token %}
+        <p><input type="submit" value="Подтвердить!"></p>
+        <p><a href="{% url "list_more" list.pk %}">Cancel</a></p>
+    </form>
+{% endblock %}

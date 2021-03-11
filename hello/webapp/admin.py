@@ -1,5 +1,6 @@
 from django.contrib import admin
-from webapp.models import List
+from webapp.models import List, Status, Type
+
 
 # Register your models here.
 # class ListAdmin(admin.ModelAdmin):
@@ -14,3 +15,5 @@ class ListAdmin(admin.ModelAdmin):
 
 
 admin.site.register(List, ListAdmin)
+admin.site.register(Status)
+admin.site.register(Type)

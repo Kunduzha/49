@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <a href="{% url "main_page" %}">На список задач</a>
+{#    {{ form.as_p }}#}
+    <form action="" method="post">
+        {% include 'list_form.html' with button_text="Create"%}
+    </form>
+
+
+{% endblock content %}
