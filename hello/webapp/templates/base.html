@@ -1,0 +1,28 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Новостной портал номер [-1] в мире{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/navbar.css" %}">
+</head>
+<body>
+
+
+    <div class="container">
+    <nav>
+        <ul>
+{#            {% include 'navigation.html' %}#}
+            {% block menu %}
+            {% endblock %}
+        </ul>
+    </nav>
+
+        <h1>{% block page_header %}Мои задачи!{% endblock page_header %}</h1>
+        {% block content %}{% endblock content %}
+    </div>
+</body>
+</html>

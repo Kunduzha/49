@@ -15,7 +15,7 @@ class Type(models.Model):
     name = models.CharField(max_length=50, verbose_name='Тип')
 
 class List(BaseModel):
-    title=models.CharField(max_length=50, blank=False, null=False)
+    title=models.CharField(max_length=50, blank=False, null=False, verbose_name='type')
     description = models.TextField(null=False, blank=False, verbose_name='Text')
     status = models.ForeignKey('webapp.Status', max_length=200, null=False, blank=False, related_name='lists',
                               verbose_name='Status', on_delete=models.PROTECT)

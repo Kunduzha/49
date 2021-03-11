@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+
+        {% if not lists %}
+            <h1>Нет Задач</h1>
+        {% else %}
+            <h1>Задачи</h1>
+            {% for list in lists %}
+            <h6>
+                статус: {{ list.status }}
+                тип: {{ list.type }}
+
+                {{ list.title }}
+            </h6>
+                <h6>
+                    <a href="{% url 'list_more' list.pk %}">{{ list.title }}</a>
+                </h6>
+
+
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}
