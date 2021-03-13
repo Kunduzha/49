@@ -8,9 +8,10 @@ from webapp.forms import ListForms
 class IndexView(TemplateView):
 
     template_name = 'index.html'
-
     def get_context_data(self, **kwargs):
+        print(kwargs)
         kwargs['lists'] = List.objects.all()
+        print(kwargs)
         return super().get_context_data(**kwargs)
 
 

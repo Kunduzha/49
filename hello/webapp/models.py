@@ -8,24 +8,49 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+
 class Status(models.Model):
     name = models.CharField(max_length=40, verbose_name='Статус')
+
     def __str__(self):
         return f'{self.name}'
-class Type(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Тип')
+
+
+class Types(models.Model):
+    type = models.CharField(max_length=50, verbose_name='Типы')
+
+    class Meta:
+        db_table = 'types'
+        verbose_name = 'Тип'
+        verbose_name_plural = 'Типы'
+
+
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.type}'
+
+
+
+
+
 class List(BaseModel):
-    title=models.CharField(max_length=50, blank=False, null=False, verbose_name='type')
-    description = models.TextField(null=False, blank=False, verbose_name='Text')
+
+    title = models.CharField(max_length=50, blank=False, null=False, verbose_name='заголовка')
+
+    description = models.TextField(null=False, blank=False, verbose_name='Описание')
+
     status = models.ForeignKey('webapp.Status', max_length=200, null=False, blank=False, related_name='lists',
                               verbose_name='Status', on_delete=models.PROTECT)
-    type=models.ForeignKey('webapp.Type',
-                           related_name='lists',
-                           on_delete=models.PROTECT,
-                           null=False,
-                           blank=False
+
+    types = models.ManyToManyField('webapp.Types',
+
+                           related_name ='lists',
+
+                           # on_delete = models.PROTECT,
+
+                           null = False,
+                           #
+                           blank = False
+
                            )
 
     about_list = models.TextField(max_length=3000, null=True, blank=True)
@@ -37,3 +62,12 @@ class List(BaseModel):
 
     def __str__(self):
         return f'{self.id}, {self.status},{self.created_at}'
+
+
+# class ListType(models.Model):
+#     list = models.ForeignKey('webapp.List', on_delete=models.CASCADE)
+#     type = models.ForeignKey('webapp.Type', on_delete=models.CASCADE)
+#
+#     class Meta:
+#         db_table = 'list_types'
+#         verbose_name = 'типыЗаписей'
