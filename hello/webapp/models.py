@@ -64,10 +64,3 @@ class List(BaseModel):
         return f'{self.id}, {self.status},{self.created_at}'
 
 
-# class ListType(models.Model):
-#     list = models.ForeignKey('webapp.List', on_delete=models.CASCADE)
-#     type = models.ForeignKey('webapp.Type', on_delete=models.CASCADE)
-#
-#     class Meta:
-#         db_table = 'list_types'
-#         verbose_name = 'типыЗаписей'
