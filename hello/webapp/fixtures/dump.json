@@ -50,19 +50,6 @@
 },
 {
   "model": "webapp.list",
-  "pk": 1,
-  "fields": {
-    "created_at": "2021-03-11T12:42:39.644Z",
-    "updated_at": "2021-03-11T12:42:39.644Z",
-    "title": "csxcs",
-    "description": "cxcxcs",
-    "status": 1,
-    "about_list": "csscs",
-    "types": []
-  }
-},
-{
-  "model": "webapp.list",
   "pk": 3,
   "fields": {
     "created_at": "2021-03-11T12:59:16.154Z",
@@ -74,19 +61,6 @@
     "types": [
       1
     ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 4,
-  "fields": {
-    "created_at": "2021-03-13T12:55:47.379Z",
-    "updated_at": "2021-03-13T12:55:47.379Z",
-    "title": "jkhjkh",
-    "description": "vsvsd",
-    "status": 2,
-    "about_list": "vdsvsdv",
-    "types": []
   }
 },
 {
@@ -114,6 +88,38 @@
     "about_list": "vdsvsdv",
     "types": [
       1,
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.list",
+  "pk": 7,
+  "fields": {
+    "created_at": "2021-03-15T10:14:21.818Z",
+    "updated_at": "2021-03-15T10:24:01.163Z",
+    "title": "rrrrrrrr",
+    "description": "rrrrrrr",
+    "status": 2,
+    "about_list": "rrrrrrrrrrrrrr",
+    "types": [
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.list",
+  "pk": 8,
+  "fields": {
+    "created_at": "2021-03-15T10:25:11.911Z",
+    "updated_at": "2021-03-15T10:25:11.911Z",
+    "title": "11111111",
+    "description": "11111111",
+    "status": 2,
+    "about_list": "11111111111",
+    "types": [
+      2,
+      3,
       4
     ]
   }
