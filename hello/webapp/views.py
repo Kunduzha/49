@@ -25,7 +25,6 @@ class ListView(TemplateView):
 
 
 class Add_list(View):
-    # template_name = 'add_list.html'
     def get(self, request):
         form = ListForms()
         return render(request, 'add_list.html', {'form': form})
@@ -65,7 +64,7 @@ class List_update(TemplateView):
         list = get_object_or_404(List, pk=kwargs.get("pk"))
         form = ListForms(data=request.POST)
         if form.is_valid():
-            list.types = form.cleaned_data["types"]
+            # list.types = form.cleaned_data["types"]
             list.title = form.cleaned_data["title"]
             list.status = form.cleaned_data["status"]
             list.description = form.cleaned_data["description"]
