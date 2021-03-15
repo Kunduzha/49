@@ -41,17 +41,7 @@ class List(BaseModel):
     status = models.ForeignKey('webapp.Status', max_length=200, null=False, blank=False, related_name='lists',
                               verbose_name='Status', on_delete=models.PROTECT)
 
-    types = models.ManyToManyField('webapp.Types',
-
-                           related_name ='lists',
-
-                           # on_delete = models.PROTECT,
-
-                           null = False,
-                           #
-                           blank = False
-
-                           )
+    types = models.ManyToManyField('webapp.Types', related_name ='lists', blank=False )
 
     about_list = models.TextField(max_length=3000, null=True, blank=True)
 

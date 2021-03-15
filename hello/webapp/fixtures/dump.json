@@ -21,24 +21,31 @@
   }
 },
 {
-  "model": "webapp.type",
+  "model": "webapp.types",
   "pk": 1,
   "fields": {
-    "name": "Task"
+    "type": "Tag"
   }
 },
 {
-  "model": "webapp.type",
+  "model": "webapp.types",
   "pk": 2,
   "fields": {
-    "name": "Bug"
+    "type": "Bug"
   }
 },
 {
-  "model": "webapp.type",
+  "model": "webapp.types",
   "pk": 3,
   "fields": {
-    "name": "Enchancement"
+    "type": "Task"
+  }
+},
+{
+  "model": "webapp.types",
+  "pk": 4,
+  "fields": {
+    "type": "Enchancement"
   }
 },
 {
@@ -50,8 +57,65 @@
     "title": "csxcs",
     "description": "cxcxcs",
     "status": 1,
-    "type": 1,
-    "about_list": "csscs"
+    "about_list": "csscs",
+    "types": []
+  }
+},
+{
+  "model": "webapp.list",
+  "pk": 3,
+  "fields": {
+    "created_at": "2021-03-11T12:59:16.154Z",
+    "updated_at": "2021-03-13T11:39:56.871Z",
+    "title": "оооооооо",
+    "description": "щщщщщщщщ",
+    "status": 3,
+    "about_list": "щщщщщщщщщ",
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.list",
+  "pk": 4,
+  "fields": {
+    "created_at": "2021-03-13T12:55:47.379Z",
+    "updated_at": "2021-03-13T12:55:47.379Z",
+    "title": "jkhjkh",
+    "description": "vsvsd",
+    "status": 2,
+    "about_list": "vdsvsdv",
+    "types": []
+  }
+},
+{
+  "model": "webapp.list",
+  "pk": 5,
+  "fields": {
+    "created_at": "2021-03-13T12:56:25.664Z",
+    "updated_at": "2021-03-13T12:56:25.664Z",
+    "title": "jkhjkh",
+    "description": "vsvsd",
+    "status": 2,
+    "about_list": "vdsvsdv",
+    "types": []
+  }
+},
+{
+  "model": "webapp.list",
+  "pk": 6,
+  "fields": {
+    "created_at": "2021-03-13T12:57:40.137Z",
+    "updated_at": "2021-03-13T12:57:40.137Z",
+    "title": "jkhjkh",
+    "description": "vsvsd",
+    "status": 2,
+    "about_list": "vdsvsdv",
+    "types": [
+      1,
+      4
+    ]
   }
 },
 {

@@ -10,7 +10,8 @@
     <h1>Задачa</h1>
     <p>время:  {{ list.created_at}}</p>
     <p>статус:  {{ list.status}}</p>
-    <p>тип:  {{ list.type}}</p>
+    <p>Тип: {% for types in list.types.all %}{{ types.types }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+{#    <p>тип:  {{ list.type}}</p>#}
     <p>заголовок:  {{ list.title}}</p>
     <p>описание: {{ list.description}}</p>
     {% if list.about_list %}

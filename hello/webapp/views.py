@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, TemplateView, RedirectView
 
-from webapp.models import List
+from webapp.models import List, Types
 from webapp.forms import ListForms
 
 
@@ -36,10 +36,10 @@ class Add_list(View):
             status = form.cleaned_data["status"]
             title = form.cleaned_data["title"]
             description = form.cleaned_data["description"]
-            type = form.cleaned_data["type"]
             about_list = form.cleaned_data['about_list']
             new_list = List.objects.create(status=status, description=description, title=title,
-                                           about_list=about_list, type=type)
+                                           about_list=about_list)
+            new_list.types.set(form.cleaned_data["types"])
             return redirect('list_more', pk=new_list.pk)
         else:
             return render(request, 'add_list.html', {'form': form})
@@ -65,7 +65,7 @@ class List_update(TemplateView):
         list = get_object_or_404(List, pk=kwargs.get("pk"))
         form = ListForms(data=request.POST)
         if form.is_valid():
-            list.type = form.cleaned_data["type"]
+            list.types = form.cleaned_data["types"]
             list.title = form.cleaned_data["title"]
             list.status = form.cleaned_data["status"]
             list.description = form.cleaned_data["description"]
