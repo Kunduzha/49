@@ -49,7 +49,7 @@ class List_update(TemplateView):
     def get_context_data(self, **kwargs):
         list = get_object_or_404(List, pk=kwargs.get("pk"))
         form = ListForms(initial={
-            'types': self.list.types.all(),
+            'types': list.types.all(),
             'title': list.title,
             'description': list.description,
             'status': list.status,
@@ -64,14 +64,15 @@ class List_update(TemplateView):
         list = get_object_or_404(List, pk=kwargs.get("pk"))
         form = ListForms(data=request.POST)
         if form.is_valid():
-             list.types = form.cleaned_data["types"]
+            # list.types = form.cleaned_data["types"]
             list.title = form.cleaned_data["title"]
             list.status = form.cleaned_data["status"]
             list.description = form.cleaned_data["description"]
             list.about_list = form.cleaned_data['about_list']
-            types=form.cleaned_data.pop('types')
-            self.list.save()
-            self.list.types.set(types)
+            # list.types=form.cleaned_data.pop('types')
+            list.save()
+            types = form.cleaned_data["types"]
+            list.types.set(types)
             return redirect('list_more', pk=list.pk)
         else:
             return render(request, 'listupdate.html', context={'form': form, 'list': list})

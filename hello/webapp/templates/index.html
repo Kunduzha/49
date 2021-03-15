@@ -8,15 +8,20 @@
         {% else %}
             <h1>Задачи</h1>
             {% for list in lists %}
-            <h6>
+            <p>
                 статус: {{ list.status }}
-                тип: {{ list.type }}
-
-                {{ list.title }}
-            </h6>
-                <h6>
+            </p>
+                <p>Типы:
+                {% for types in list.types.all %}
+                    {{ types.type }}
+                    {% if not forloop.last %}
+                        ,
+                    {% endif %}
+                {% endfor %}
+                </p>
+                <h1>
                     <a href="{% url 'list_more' list.pk %}">{{ list.title }}</a>
-                </h6>
+                </h1>
 
 
             {% endfor %}
