@@ -30,11 +30,11 @@ class MinLengthValidators(BaseValidator):
 #             return type(x)
 
 
-# def str_value(string):
-#     try:
-#         if type(int(string)) is int:
-#             raise ValidationError("The value can't be the integer")
-#     except ValidationError as e:
-#         raise e
-#     except ValueError:
-#         pass
+def str_value(string):
+    try:
+        if type(int(string)) is int:
+            raise ValidationError("The value can't be the integer")
+    except ValidationError as e:
+        raise e
+    except ValueError:
+        pass
