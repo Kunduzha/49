@@ -1,5 +1,6 @@
 from django.db import models
 
+from webapp.validators import MaxlengthValidators, MinLengthValidators, str_value
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -34,16 +35,15 @@ class Types(models.Model):
 
 class List(BaseModel):
 
-    title = models.CharField(max_length=50, blank=False, null=False, verbose_name='заголовка')
+    title = models.CharField(max_length=20, blank=False, null=False, verbose_name='заголовка', validators=[ MinLengthValidators(2), MaxlengthValidators(type(''))])
 
-    description = models.TextField(null=False, blank=False, verbose_name='Описание')
+    description = models.TextField(max_length=300, null=False, blank=False, verbose_name='Описание', validators=[ MinLengthValidators(10), MaxlengthValidators(str)])
 
-    status = models.ForeignKey('webapp.Status', max_length=200, null=False, blank=False, related_name='lists',
-                              verbose_name='Status', on_delete=models.PROTECT)
+    status = models.ForeignKey('webapp.Status',  null=False, blank=False, related_name='lists', verbose_name='Status', on_delete = models.PROTECT)
 
-    types = models.ManyToManyField('webapp.Types', related_name ='lists', blank=False )
+    types = models.ManyToManyField('webapp.Types', related_name ='lists', blank=False)
 
-    about_list = models.TextField(max_length=3000, null=True, blank=True)
+    about_list = models.TextField(null=True, blank=True, validators=[MaxlengthValidators(50), MinLengthValidators(5), str_value])
 
     class Meta:
         db_table = 'the_lists'

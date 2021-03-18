@@ -64,12 +64,10 @@ class List_update(TemplateView):
         list = get_object_or_404(List, pk=kwargs.get("pk"))
         form = ListForms(data=request.POST)
         if form.is_valid():
-            # list.types = form.cleaned_data["types"]
             list.title = form.cleaned_data["title"]
             list.status = form.cleaned_data["status"]
             list.description = form.cleaned_data["description"]
             list.about_list = form.cleaned_data['about_list']
-            # list.types=form.cleaned_data.pop('types')
             list.save()
             types = form.cleaned_data["types"]
             list.types.set(types)
