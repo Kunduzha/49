@@ -1,6 +1,6 @@
 from django.db import models
 
-from webapp.validators import IntegerValidators, MinLengthValidators, str_value
+from webapp.validators import  MinLengthValidators, str_value
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -43,7 +43,7 @@ class List(BaseModel):
 
     types = models.ManyToManyField('webapp.Types', related_name ='lists', blank=False)
 
-    about_list = models.TextField(null=True, blank=True, validators=[MinLengthValidators(5), str_value])
+    about_list = models.TextField(max_length=3000, null=True, blank=True, validators=[MinLengthValidators(5), str_value])
 
     class Meta:
         db_table = 'the_lists'

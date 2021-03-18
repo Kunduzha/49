@@ -14,21 +14,6 @@ class MinLengthValidators(BaseValidator):
         return len(x)
 
 
-# @deconstructible
-# class Maxlengthvalidators(BaseValidator):
-#     message = 'Value "%(value)s" has length of %(show_value)s! It should be at least %(limit_value)d symbols long!'
-#     code = 'too_short'
-#     def compare(self, a, b):
-#         print(a)
-#         print(b)
-#         return a == b
-#
-#     def clean(self, x):
-#         try:
-#             return type(int(x))
-#         except:
-#             return type(x)
-
 
 def str_value(string):
     try:
