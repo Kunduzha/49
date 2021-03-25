@@ -17,26 +17,26 @@ class IndexView(ListView):
     #     print(kwargs)
     #     return super().get_context_data(**kwargs)
 
-    # def get(self, request, *args, **kwargs):
-    #     self.form = self.get_search_form()
-    #     self.search_value = self.get_search_value()
-    #     return super().get(request, *args, **kwargs)
-    #
-    # def get_context_data(self, *args, object_list = None, **kwargs):
-    #     context = super().get_context_data(object_list= object_list, **kwargs)
-    #     context['form'] = self.form
-    #     if self.search_value:
-    #         context['query'] = urlencode({'search': self.search_value})
-    #     return context
-    #
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     if self.search_value:
-    #         query = Q(title__icontains=self.search_value)  |Q(description__icontains=self.search_value) | Q(about_list__icontains=self.search_value)
-    #         queryset = queryset.filter(query)
-    #     return queryset
+    def get(self, request, *args, **kwargs):
+        self.form = self.get_search_form()
+        self.search_value = self.get_search_value()
+        return super().get(request, *args, **kwargs)
 
-         return List.objects.all().order_by('-created_at')
+    def get_context_data(self, *args, object_list = None, **kwargs):
+        context = super().get_context_data(object_list= object_list, **kwargs)
+        context['form'] = self.form
+        if self.search_value:
+            context['query'] = urlencode({'search': self.search_value})
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.search_value:
+            query = Q(title__icontains=self.search_value)  |Q(description__icontains=self.search_value) | Q(about_list__icontains=self.search_value)
+            queryset = queryset.filter(query)
+        return queryset
+
+        # return List.objects.all().order_by('-created_at')
 
 
 class ListView(TemplateView):
