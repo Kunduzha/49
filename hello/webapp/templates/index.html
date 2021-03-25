@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
+    <div >
+
 
         {% if not lists %}
             <h1>Нет Задач</h1>
@@ -9,17 +10,31 @@
 
             {% include 'simple_search.html' %}
 
-            <h1>Задачи</h1>
+
             {% if is_paginated %}
 
                  {% include 'pagination.html' %}
 
             {% endif %}
+             <table class="table">
+  <caption>List of users</caption>
+  <thead>
+    <tr>
+      <th scope="col">Заголовок</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Тип</th>
+    </tr>
+  </thead>
+  <tbody>
             {% for list in lists %}
-            <p>
+                <tr>
+            <td class="table-success">
+                <a href="{% url 'list_more' list.pk %}">{{ list.title }}</a>
+            </td>
+            <td class="table-active">
                 статус: {{ list.status }}
-            </p>
-                <p>Типы:
+            </td>
+                <td class="table-active"><p>Типы:
                 {% for types in list.types.all %}
                     {{ types.type }}
                     {% if not forloop.last %}
@@ -27,10 +42,11 @@
                     {% endif %}
                 {% endfor %}
                 </p>
-                <h1>
-                    <a href="{% url 'list_more' list.pk %}">{{ list.title }}</a>
-                </h1>
+                </td>
+                </tr>
             {% endfor %}
+    </tbody>
+</table>
 
 
         {% endif %}
