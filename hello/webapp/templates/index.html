@@ -5,8 +5,10 @@
 
         {% if not lists %}
             <h1>Нет Задач</h1>
-
         {% else %}
+
+            {% include 'simple_search.html' %}
+
             <h1>Задачи</h1>
             {% if is_paginated %}
 

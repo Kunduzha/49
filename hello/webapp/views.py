@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.utils.http import urlencode
 
 from webapp.models import List, Types
-from webapp.forms import ListForms
+from webapp.forms import ListForms, SimpleSearchForm
 
 
 class IndexView(ListView):
@@ -37,6 +37,14 @@ class IndexView(ListView):
             query = Q(title__icontains=self.search_value)  | Q(description__icontains=self.search_value)
             queryset = queryset.filter(query)
         return queryset
+
+    def get_search_form(self):
+        return SimpleSearchForm(self.request.GET)
+
+    def get_search_value(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data['search']
+        return None
 
         # return List.objects.all().order_by('-created_at')
 
