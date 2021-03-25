@@ -5,8 +5,14 @@
 
         {% if not lists %}
             <h1>Нет Задач</h1>
+
         {% else %}
             <h1>Задачи</h1>
+            {% if is_paginated %}
+
+                 {% include 'pagination.html' %}
+
+            {% endif %}
             {% for list in lists %}
             <p>
                 статус: {{ list.status }}
@@ -22,9 +28,9 @@
                 <h1>
                     <a href="{% url 'list_more' list.pk %}">{{ list.title }}</a>
                 </h1>
-
-
             {% endfor %}
+
+
         {% endif %}
     </div>
 {% endblock content %}
