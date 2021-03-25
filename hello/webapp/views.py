@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, TemplateView, RedirectView, ListView
+from django.db.models import Q
+from django.utils.http import urlencode
 
 from webapp.models import List, Types
 from webapp.forms import ListForms
@@ -32,7 +34,7 @@ class IndexView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.search_value:
-            query = Q(title__icontains=self.search_value)  |Q(description__icontains=self.search_value) | Q(about_list__icontains=self.search_value)
+            query = Q(title__icontains=self.search_value)  | Q(description__icontains=self.search_value)
             queryset = queryset.filter(query)
         return queryset
 
