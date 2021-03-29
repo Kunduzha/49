@@ -34,14 +34,14 @@ class Types(models.Model):
 
 
 class List(BaseModel):
-    # list = models.ForeignKey(
-    #     'webapp.Project',
-    #     on_delete=models.CASCADE,
-    #     related_name='comments',
-    #     verbose_name='Статья',
-    #     null=False,
-    #     blank=False
-    # )
+    project = models.ForeignKey(
+        'webapp.Project',
+        on_delete=models.CASCADE,
+        related_name='lists',
+        verbose_name='Проект',
+        null=False,
+        blank=False
+    )
 
     title = models.CharField(max_length=20, blank=False, null=False, verbose_name='заголовка', validators=[ MinLengthValidators(2), str_value])
 
@@ -64,8 +64,8 @@ class List(BaseModel):
 
 
 class Project(BaseModel):
-    begin_at = models.DateTimeField(auto_now_add=False, blank=True, null=True, verbose_name='Дата начало')
-    created_at = models.DateTimeField(auto_now_add=False, blank=True, null=True, verbose_name='Дата окончания')
+    begin_at = models.DateField(blank=False, null=False, verbose_name='Дата начало')
+    created_at = models.DateField(blank=True, null=True, verbose_name='Дата окончания')
 
 
     title = models.CharField(max_length=30, blank=False, null=False, verbose_name='заголовка',

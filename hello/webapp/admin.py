@@ -14,12 +14,12 @@ from webapp.models import List, Status, Types, Project
 #     readonly_fields = ['created_at', 'id']
 
 
-class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'description', 'begin_at', 'created_at']
-    list_filter = ['description']
+# class ProjectAdmin(admin.ModelAdmin):
+#     list_display = ['id', 'title', 'description', 'begin_at', 'created_at']
+#     list_filter = ['description']
+#
+#     fields = ['id', 'title', 'description', 'begin_at', 'created_at']
 
-    fields = ['id', 'title', 'description', 'begin_at', 'created_at']
-
-admin.site.register(Project, ProjectAdmin)
+admin.site.register(Project)
 # admin.site.register(Status)
 # admin.site.register(Types)
