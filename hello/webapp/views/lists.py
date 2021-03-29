@@ -12,13 +12,7 @@ class IndexView(ListView):
     model = List
     template_name = 'lists/index.html'
     context_object_name = 'lists'
-    paginate_by = 3
-    paginate_orphans = 1
-    # def get_context_data(self, **kwargs):
-    #     print(kwargs)
-    #     kwargs['lists'] = List.objects.all()
-    #     print(kwargs)
-    #     return super().get_context_data(**kwargs)
+
 
     def get(self, request, *args, **kwargs):
         self.form = self.get_search_form()
@@ -119,7 +113,7 @@ class List_update(TemplateView):
             list.save()
             types = form.cleaned_data["types"]
             list.types.set(types)
-            return redirect('list_more', pk=list.pk)
+            return redirect('project_more', pk=list.project.pk)
         else:
             return render(request, 'lists/update.html', context={'form': form, 'list': list})
 

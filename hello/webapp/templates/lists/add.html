@@ -1,6 +1,6 @@
 {% extends 'partial/../base.html' %}
 {% block content %}
-    <a href="{% url "main_page" %}">На список задач</a>
+    <a href="{% url "main_page" %}">На список проектов</a>
 {#    {{ form.as_p }}#}
     <form action="" method="post">
         {% include 'lists/../partial/list_form.html' with button_text="Create"%}
