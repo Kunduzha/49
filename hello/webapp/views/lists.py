@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView, RedirectView, ListView
+from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView
 from django.db.models import Q
 from django.utils.http import urlencode
 
-from webapp.models import List, Types
+from webapp.models import List, Types, Project
 from webapp.forms import ListForms, SimpleSearchForm
 
 
@@ -59,24 +59,37 @@ class ListView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class Add_list(View):
-    def get(self, request):
-        form = ListForms()
-        return render(request, 'lists/add.html', {'form': form})
+class Add_list(CreateView):
+    # def get(self, request):
+    #     form = ListForms()
+    #     return render(request, 'lists/add.html', {'form': form})
+    #
+    # def post(self, request):
+    #     form = ListForms(data=request.POST)
+    #     if form.is_valid():
+    #         status = form.cleaned_data["status"]
+    #         title = form.cleaned_data["title"]
+    #         description = form.cleaned_data["description"]
+    #         about_list = form.cleaned_data['about_list']
+    #         new_list = List.objects.create(status=status, description=description, title=title,
+    #                                        about_list=about_list)
+    #         new_list.types.set(form.cleaned_data["types"])
+    #         return redirect('list_more', pk=new_list.pk)
+    #     else:
+    #         return render(request, 'lists/add.html', {'form': form})
 
-    def post(self, request):
-        form = ListForms(data=request.POST)
-        if form.is_valid():
-            status = form.cleaned_data["status"]
-            title = form.cleaned_data["title"]
-            description = form.cleaned_data["description"]
-            about_list = form.cleaned_data['about_list']
-            new_list = List.objects.create(status=status, description=description, title=title,
-                                           about_list=about_list)
-            new_list.types.set(form.cleaned_data["types"])
-            return redirect('list_more', pk=new_list.pk)
-        else:
-            return render(request, 'lists/add.html', {'form': form})
+    model = List
+    template_name = 'lists/add.html'
+    form_class = ListForms
+
+    def form_valid(self, form):
+        project = get_object_or_404(Project, pk = self.kwargs.get('pk'))
+        list = form.save(commit=False)
+        list.project = project
+        list.save()
+        form.save_m2m()
+        return redirect('project_more', pk = project.pk)
+
 
 class List_update(TemplateView):
     template_name = 'lists/update.html'

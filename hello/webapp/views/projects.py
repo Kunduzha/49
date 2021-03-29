@@ -1,15 +1,15 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView, RedirectView, ListView
+from django.shortcuts import render, get_object_or_404, redirect,reverse
+from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView
 from django.db.models import Q
 from django.utils.http import urlencode
 
 from webapp.models import Project
-from webapp.forms import ListForms, SimpleSearchForm
+from webapp.forms import ListForms, SimpleSearchForm, ProjectForms
 
-class IndexView(ListView):
-    model = Proj
-    template_name = 'lists/index.html'
-    context_object_name = 'lists'
+class IndexView_project(ListView):
+    model = Project
+    template_name = 'projects/index.html'
+    context_object_name = 'projects'
     paginate_by = 3
     paginate_orphans = 1
 
@@ -41,5 +41,16 @@ class IndexView(ListView):
             return self.form.cleaned_data['search']
         return None
 
-        # return List.objects.all().order_by('-created_at')
 
+class ProjectView(DetailView):
+    model = Project
+    template_name = 'projects/project_view.html'
+
+
+class Add_project(CreateView):
+    template_name = 'projects/create.html'
+    model = Project
+    form_class = ProjectForms
+
+    def get_success_url(self):
+        return reverse('project_more', kwargs = {'pk': self.object.pk})

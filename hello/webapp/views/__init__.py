@@ -5,3 +5,9 @@ from webapp.views.lists import (
     List_update,
     Delete_list
 )
+from webapp.views.projects import (
+    IndexView_project,
+    ProjectView,
+    Add_project
+
+)

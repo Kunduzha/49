@@ -1,0 +1,75 @@
+{% extends 'partial/../base.html' %}
+{% block menu %}
+
+
+    <div class="row mx-md-n5">
+  <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "list_update" project.pk %}">Изменить</a></div></div>
+  <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "delete_list" project.pk %}">Удалить</a></div></div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>{{ project.title }}</h1>
+
+    <p> Дата начало: {{ project.begin_at }}
+    </p>
+    <p> Дата окончания: {{ project.end_at }}
+    </p>
+    <p> Описание: {{ project.description }}
+    </p>
+
+    <div >{{ article.text }}</div>
+
+    <hr/>
+
+    <h3>Задачи:</h3>
+
+  <div >
+
+
+        {% if not project.lists.all %}
+            <h1>Нет Задач</h1>
+        {% else %}
+
+             <table class="table">
+  <caption>List of users</caption>
+  <thead>
+    <tr>
+      <th scope="col">Заголовок</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Тип</th>
+    </tr>
+  </thead>
+  <tbody>
+            {% for list in project.lists.all %}
+                <tr>
+            <td class="table-success">
+                <a href="{% url 'list_more' list.pk %}">{{ list.title }}</a>
+            </td>
+            <td class="table-active">
+                статус: {{ list.status }}
+            </td>
+                <td class="table-active"><p>Типы:
+                {% for types in list.types.all %}
+                    {{ types.type }}
+                    {% if not forloop.last %}
+                        ,
+                    {% endif %}
+                {% endfor %}
+                </p>
+                </td>
+                </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+
+        {% endif %}
+
+
+    </div>
+    <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "adding_list" project.pk %}"> добавить задачку</a></div></div>
+
+{% endblock %}

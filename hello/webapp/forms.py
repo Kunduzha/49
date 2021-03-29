@@ -1,5 +1,5 @@
 from django import forms
-from webapp.models import List
+from webapp.models import List, Project
 from django.forms import widgets
 
 from webapp.models import Status, Types
@@ -24,4 +24,9 @@ class SimpleSearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False, label="Найти")
 
 
+class ProjectForms(forms.ModelForm):
 
+
+    class Meta:
+        model = Project
+        fields = ['begin_at', 'end_at', 'title', 'description']

@@ -1,0 +1,10 @@
+{% extends 'partial/../base.html' %}
+{% block content %}
+    <a href="{% url "main_page" %}">На список проектов</a>
+{#    {{ form.as_p }}#}
+    <form action="" method="post">
+        {% include 'projects/../partial/list_form.html' with button_text="Create"%}
+    </form>
+
+
+{% endblock content %}

@@ -65,7 +65,7 @@ class List(BaseModel):
 
 class Project(BaseModel):
     begin_at = models.DateField(blank=False, null=False, verbose_name='Дата начало')
-    created_at = models.DateField(blank=True, null=True, verbose_name='Дата окончания')
+    end_at = models.DateField(blank=True, null=True, verbose_name='Дата окончания')
 
 
     title = models.CharField(max_length=30, blank=False, null=False, verbose_name='заголовка',
