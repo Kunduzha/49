@@ -54,3 +54,42 @@ class Add_project(CreateView):
 
     def get_success_url(self):
         return reverse('project_more', kwargs = {'pk': self.object.pk})
+
+class ProjectUpdate(TemplateView):
+    template_name = 'projects/update.html'
+
+    def get_context_data(self, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs.get("pk"))
+        form = ProjectForms(initial={
+            'title': project.title,
+            'description': project.description,
+            'begin_at': project.begin_at,
+            'end_at': project.end_at,
+        })
+        kwargs['form'] = form
+        kwargs['project'] = project
+        return super().get_context_data(**kwargs)
+
+    def post(self, request, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs.get("pk"))
+        form = ProjectForms(data=request.POST)
+        if form.is_valid():
+            project.title = form.cleaned_data["title"]
+            project.description = form.cleaned_data["description"]
+            project.begin_at = form.cleaned_data["begin_at"]
+            project.end_at = form.cleaned_data['end_at']
+            project.save()
+            return redirect('project_more', pk=project.pk)
+        else:
+            return render(request, 'projects/update.html', context={'form': form, 'project': project})
+
+
+class Delete_Project(View):
+    def get(self, request, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs.get('pk'))
+        return render(request, 'projects/delete.html', context={'project': project})
+
+    def post(self, request, **kwargs):
+        project = get_object_or_404(Project, pk=kwargs.get('pk'))
+        project.delete()
+        return redirect('main_page')

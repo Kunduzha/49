@@ -8,6 +8,8 @@ from webapp.views.lists import (
 from webapp.views.projects import (
     IndexView_project,
     ProjectView,
-    Add_project
+    Add_project,
+    ProjectUpdate,
+    Delete_Project
 
 )
