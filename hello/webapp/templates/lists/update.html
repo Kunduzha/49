@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'partial/../base.html' %}
 {% block menu %}
     <li><a href="{% url "list_more" list.pk %}">back</a></li>
 {% endblock %}
@@ -6,7 +6,7 @@
 
 {#    {{ form.as_p }}#}
     <form action="" method="post">
-        {% include 'list_form.html' with button_text="создать"%}
+        {% include 'lists/../partial/list_form.html' with button_text="создать"%}
     </form>
 
 

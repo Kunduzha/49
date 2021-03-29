@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'partial/../base.html' %}
 
 {% block content %}
     <div >
@@ -8,12 +8,12 @@
             <h1>Нет Задач</h1>
         {% else %}
 
-            {% include 'simple_search.html' %}
+            {% include 'lists/../partial/simple_search.html' %}
 
 
             {% if is_paginated %}
 
-                 {% include 'pagination.html' %}
+                 {% include 'lists/pagination.html' %}
 
             {% endif %}
              <table class="table">

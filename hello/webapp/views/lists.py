@@ -7,9 +7,10 @@ from webapp.models import List, Types
 from webapp.forms import ListForms, SimpleSearchForm
 
 
+
 class IndexView(ListView):
     model = List
-    template_name = 'index.html'
+    template_name = 'lists/index.html'
     context_object_name = 'lists'
     paginate_by = 3
     paginate_orphans = 1
@@ -51,7 +52,7 @@ class IndexView(ListView):
 
 class ListView(TemplateView):
 
-    template_name = 'list_view.html'
+    template_name = 'lists/list_view.html'
 
     def get_context_data(self, **kwargs):
         kwargs['list'] = get_object_or_404(List, id=kwargs.get('pk'))
@@ -61,7 +62,7 @@ class ListView(TemplateView):
 class Add_list(View):
     def get(self, request):
         form = ListForms()
-        return render(request, 'add_list.html', {'form': form})
+        return render(request, 'lists/add.html', {'form': form})
 
     def post(self, request):
         form = ListForms(data=request.POST)
@@ -75,10 +76,10 @@ class Add_list(View):
             new_list.types.set(form.cleaned_data["types"])
             return redirect('list_more', pk=new_list.pk)
         else:
-            return render(request, 'add_list.html', {'form': form})
+            return render(request, 'lists/add.html', {'form': form})
 
 class List_update(TemplateView):
-    template_name = 'listupdate.html'
+    template_name = 'lists/update.html'
 
     def get_context_data(self, **kwargs):
         list = get_object_or_404(List, pk=kwargs.get("pk"))
@@ -107,13 +108,13 @@ class List_update(TemplateView):
             list.types.set(types)
             return redirect('list_more', pk=list.pk)
         else:
-            return render(request, 'listupdate.html', context={'form': form, 'list': list})
+            return render(request, 'lists/update.html', context={'form': form, 'list': list})
 
 
 class Delete_list(View):
     def get(self, request, **kwargs):
         list = get_object_or_404(List, pk=kwargs.get('pk'))
-        return render(request, 'delete.html', context={'list': list})
+        return render(request, 'lists/delete.html', context={'list': list})
     def post(self, request, **kwargs):
         list = get_object_or_404(List, pk=kwargs.get('pk'))
         list.delete()
