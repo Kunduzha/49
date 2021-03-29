@@ -30,3 +30,4 @@ urlpatterns = [
     path('delete/<int:pk>/', Delete_list.as_view(), name='delete_list'),
     path('update/<int:pk>/', List_update.as_view(), name='list_update')
 ]
+

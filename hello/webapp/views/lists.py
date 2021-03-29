@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView,
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -85,38 +85,47 @@ class Add_list(CreateView):
         return redirect('project_more', pk = project.pk)
 
 
-class List_update(TemplateView):
+# class List_update(TemplateView):
+#     template_name = 'lists/update.html'
+#
+#     def get_context_data(self, **kwargs):
+#         list = get_object_or_404(List, pk=kwargs.get("pk"))
+#         form = ListForms(initial={
+#             'types': list.types.all(),
+#             'title': list.title,
+#             'description': list.description,
+#             'status': list.status,
+#             'created_at': list.created_at,
+#             'about_list': list.about_list,
+#         })
+#         kwargs['form'] = form
+#         kwargs['list'] = list
+#         return super().get_context_data(**kwargs)
+#
+#     def post(self, request, **kwargs):
+#         list = get_object_or_404(List, pk=kwargs.get("pk"))
+#         form = ListForms(data=request.POST)
+#         if form.is_valid():
+#             list.title = form.cleaned_data["title"]
+#             list.status = form.cleaned_data["status"]
+#             list.description = form.cleaned_data["description"]
+#             list.about_list = form.cleaned_data['about_list']
+#             list.save()
+#             types = form.cleaned_data["types"]
+#             list.types.set(types)
+#             return redirect('project_more', pk=list.project.pk)
+#         else:
+#             return render(request, 'lists/update.html', context={'form': form, 'list': list})
+
+
+class List_update(UpdateView):
+    model = List
     template_name = 'lists/update.html'
+    form_class= ListForms
+    context_object_name = 'list'
 
-    def get_context_data(self, **kwargs):
-        list = get_object_or_404(List, pk=kwargs.get("pk"))
-        form = ListForms(initial={
-            'types': list.types.all(),
-            'title': list.title,
-            'description': list.description,
-            'status': list.status,
-            'created_at': list.created_at,
-            'about_list': list.about_list,
-        })
-        kwargs['form'] = form
-        kwargs['list'] = list
-        return super().get_context_data(**kwargs)
-
-    def post(self, request, **kwargs):
-        list = get_object_or_404(List, pk=kwargs.get("pk"))
-        form = ListForms(data=request.POST)
-        if form.is_valid():
-            list.title = form.cleaned_data["title"]
-            list.status = form.cleaned_data["status"]
-            list.description = form.cleaned_data["description"]
-            list.about_list = form.cleaned_data['about_list']
-            list.save()
-            types = form.cleaned_data["types"]
-            list.types.set(types)
-            return redirect('project_more', pk=list.project.pk)
-        else:
-            return render(request, 'lists/update.html', context={'form': form, 'list': list})
-
+    def get_success_url(self):
+        return reverse('project_more', kwargs={'pk': self.object.project.pk})
 
 class Delete_list(View):
     def get(self, request, **kwargs):
