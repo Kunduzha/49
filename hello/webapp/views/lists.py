@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView,
+from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -127,11 +127,19 @@ class List_update(UpdateView):
     def get_success_url(self):
         return reverse('project_more', kwargs={'pk': self.object.project.pk})
 
-class Delete_list(View):
-    def get(self, request, **kwargs):
-        list = get_object_or_404(List, pk=kwargs.get('pk'))
-        return render(request, 'lists/delete.html', context={'list': list})
-    def post(self, request, **kwargs):
-        list = get_object_or_404(List, pk=kwargs.get('pk'))
-        list.delete()
-        return redirect('main_page')
+# class Delete_list(View):
+#     def get(self, request, **kwargs):
+#         list = get_object_or_404(List, pk=kwargs.get('pk'))
+#         return render(request, 'lists/delete.html', context={'list': list})
+#     def post(self, request, **kwargs):
+#         list = get_object_or_404(List, pk=kwargs.get('pk'))
+#         list.delete()
+#         return redirect('main_page')
+
+class Delete_list(DeleteView):
+    model = List
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('project_more', kwargs={'pk': self.object.project.pk})

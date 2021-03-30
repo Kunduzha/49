@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect,reverse
-from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.urls import reverse_lazy
+from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -92,12 +93,18 @@ class ProjectUpdate(UpdateView):
     def get_success_url(self):
         return reverse('project_more', kwargs={'pk': self.object.pk})
 
-class Delete_Project(View):
-    def get(self, request, **kwargs):
-        project = get_object_or_404(Project, pk=kwargs.get('pk'))
-        return render(request, 'projects/delete.html', context={'project': project})
+# class Delete_Project(View):
+#     def get(self, request, **kwargs):
+#         project = get_object_or_404(Project, pk=kwargs.get('pk'))
+#         return render(request, 'projects/delete.html', context={'project': project})
+#
+#     def post(self, request, **kwargs):
+#         project = get_object_or_404(Project, pk=kwargs.get('pk'))
+#         project.delete()
+#         return redirect('main_page')
 
-    def post(self, request, **kwargs):
-        project = get_object_or_404(Project, pk=kwargs.get('pk'))
-        project.delete()
-        return redirect('main_page')
+class Delete_Project(DeleteView):
+    template_name = 'projects/delete.html'
+    model = Project
+    context_object_name = 'project'
+    success_url = reverse_lazy('main_page')
