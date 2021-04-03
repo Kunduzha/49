@@ -50,207 +50,36 @@
 },
 {
   "model": "webapp.list",
-  "pk": 5,
+  "pk": 21,
   "fields": {
-    "created_at": "2021-03-13T12:56:25.664Z",
-    "updated_at": "2021-03-29T10:52:26.470Z",
-    "project": 1,
-    "title": "jkhjkh",
-    "description": "vsvsdцццццццц",
-    "status": 3,
-    "about_list": "vdsvsdvцццццц",
-    "types": [
-      3
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 7,
-  "fields": {
-    "created_at": "2021-03-15T10:14:21.818Z",
-    "updated_at": "2021-03-15T10:24:01.163Z",
-    "project": 1,
-    "title": "rrrrrrrr",
-    "description": "rrrrrrr",
+    "created_at": "2021-03-31T11:36:19.066Z",
+    "updated_at": "2021-03-31T11:36:19.066Z",
+    "project": 8,
+    "title": "jkldfa;jdsf;",
+    "description": "judoka;jdklfjdkal;ffffffff",
     "status": 2,
-    "about_list": "rrrrrrrrrrrrrr",
-    "types": [
-      4
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 8,
-  "fields": {
-    "created_at": "2021-03-15T10:25:11.911Z",
-    "updated_at": "2021-03-15T10:25:11.911Z",
-    "project": 1,
-    "title": "11111111",
-    "description": "11111111",
-    "status": 2,
-    "about_list": "11111111111",
-    "types": [
-      2,
-      3,
-      4
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 10,
-  "fields": {
-    "created_at": "2021-03-17T09:19:55.560Z",
-    "updated_at": "2021-03-17T09:19:55.560Z",
-    "project": 1,
-    "title": "ddddd",
-    "description": "11111111",
-    "status": 3,
-    "about_list": "22222222222222",
-    "types": [
-      3,
-      4
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 11,
-  "fields": {
-    "created_at": "2021-03-17T09:20:38.536Z",
-    "updated_at": "2021-03-17T09:20:38.536Z",
-    "project": 1,
-    "title": "11111111",
-    "description": "111111111",
-    "status": 3,
-    "about_list": "11111111111",
-    "types": [
-      1
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 12,
-  "fields": {
-    "created_at": "2021-03-18T10:50:57.832Z",
-    "updated_at": "2021-03-18T10:50:57.832Z",
-    "project": 1,
-    "title": "ыыыыы",
-    "description": "ииииииииииии",
-    "status": 1,
-    "about_list": "ииииии",
+    "about_list": "fdkal;djfkdal;djfkla;",
     "types": [
       1,
-      2,
       3
     ]
   }
 },
 {
   "model": "webapp.list",
-  "pk": 13,
+  "pk": 22,
   "fields": {
-    "created_at": "2021-03-22T08:03:48.057Z",
-    "updated_at": "2021-03-22T08:05:30.987Z",
-    "project": 1,
-    "title": "Колобок",
-    "description": "Лиса съела колобка!!!!",
-    "status": 1,
-    "about_list": "Это сказка про колобка",
-    "types": [
-      3
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 14,
-  "fields": {
-    "created_at": "2021-03-22T08:12:10.015Z",
-    "updated_at": "2021-03-22T08:12:10.015Z",
-    "project": 1,
-    "title": "bug_burger",
-    "description": "Bugburger продается в Begemotah",
+    "created_at": "2021-03-31T11:39:05.140Z",
+    "updated_at": "2021-03-31T11:39:05.140Z",
+    "project": 8,
+    "title": "nлялялялялялл",
+    "description": "яяояояоояояояоояояооя",
     "status": 2,
-    "about_list": "Жила была была девочка",
+    "about_list": "яояояяоояояояоояояоя",
     "types": [
-      3
+      3,
+      4
     ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 15,
-  "fields": {
-    "created_at": "2021-03-22T08:15:30.923Z",
-    "updated_at": "2021-03-22T08:15:30.923Z",
-    "project": 1,
-    "title": "bug_burger",
-    "description": "Bugburger продается в Begemotah",
-    "status": 2,
-    "about_list": "Жила была была девочка",
-    "types": [
-      3
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 16,
-  "fields": {
-    "created_at": "2021-03-29T10:32:04.099Z",
-    "updated_at": "2021-03-29T10:32:04.099Z",
-    "project": 1,
-    "title": "dddd11111111",
-    "description": "ppppppsssssssss",
-    "status": 2,
-    "about_list": "pppppp",
-    "types": [
-      2
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 17,
-  "fields": {
-    "created_at": "2021-03-29T10:39:38.581Z",
-    "updated_at": "2021-03-29T10:41:31.978Z",
-    "project": 4,
-    "title": "ддддддддф",
-    "description": "щщщщщщщзззззззз",
-    "status": 3,
-    "about_list": "ззззззззззззззззззззззз",
-    "types": [
-      2
-    ]
-  }
-},
-{
-  "model": "webapp.project",
-  "pk": 1,
-  "fields": {
-    "created_at": "2021-03-29T08:27:43.845Z",
-    "updated_at": "2021-03-29T08:06:14.439Z",
-    "begin_at": "2021-03-29",
-    "end_at": null,
-    "title": "jkhjkh",
-    "description": "fefewfwefwefwevwva"
-  }
-},
-{
-  "model": "webapp.project",
-  "pk": 2,
-  "fields": {
-    "created_at": "2021-03-29T10:32:58.464Z",
-    "updated_at": "2021-03-29T10:32:58.464Z",
-    "begin_at": "2021-03-29",
-    "end_at": null,
-    "title": "aaaaaaaa",
-    "description": "uuuuuuhhhhhhhh"
   }
 },
 {
@@ -267,26 +96,38 @@
 },
 {
   "model": "webapp.project",
-  "pk": 4,
+  "pk": 7,
   "fields": {
-    "created_at": "2021-03-29T10:38:40.987Z",
-    "updated_at": "2021-03-29T10:38:40.987Z",
+    "created_at": "2021-03-29T11:28:01.864Z",
+    "updated_at": "2021-03-29T11:28:01.864Z",
     "begin_at": "2021-03-29",
     "end_at": null,
-    "title": "Третий проект",
-    "description": "гггггггггггг"
+    "title": "yyyyyyy",
+    "description": "yyyyyyyyyyyyyyy"
   }
 },
 {
   "model": "webapp.project",
-  "pk": 5,
+  "pk": 8,
   "fields": {
-    "created_at": "2021-03-29T11:01:04.108Z",
-    "updated_at": "2021-03-29T11:01:04.108Z",
+    "created_at": "2021-03-29T12:06:58.777Z",
+    "updated_at": "2021-03-30T09:45:13.542Z",
     "begin_at": "2021-03-29",
     "end_at": null,
-    "title": "pppppppp",
-    "description": "tttttttttttttu"
+    "title": "Каждый охотник",
+    "description": "Красныййййййййй"
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 9,
+  "fields": {
+    "created_at": "2021-03-29T12:17:45.160Z",
+    "updated_at": "2021-03-29T12:18:26.136Z",
+    "begin_at": "2021-03-29",
+    "end_at": null,
+    "title": "Желает знать",
+    "description": "где именно сидит фазан"
   }
 },
 {
@@ -303,6 +144,42 @@
     "is_staff": true,
     "is_active": true,
     "date_joined": "2021-03-11T10:56:32.307Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$pWS9UiRXIjDK$KzEWcaObKHFWEq11+LCxW72a5Kmpm0HvDc7YX9FSm9s=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-03-31T12:47:11.249Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$XBPuYj39EBRw$i0YgnuULrf8WwhTZnbrcbvCGwVwKoRUibZndJVbqP60=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "uuuu",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-03-31T12:49:32.004Z",
     "groups": [],
     "user_permissions": []
   }
