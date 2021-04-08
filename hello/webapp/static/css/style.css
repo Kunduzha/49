@@ -72,3 +72,9 @@
 
 }
 
+.menu-right {
+    float: right;
+}
+.menu {
+    display: block;
+}

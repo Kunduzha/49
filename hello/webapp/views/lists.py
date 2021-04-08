@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.utils.http import urlencode
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from webapp.models import List, Types, Project
 from webapp.forms import ListForms, SimpleSearchForm
 
@@ -10,7 +10,7 @@ from webapp.forms import ListForms, SimpleSearchForm
 
 class IndexView(ListView):
     model = List
-    template_name = 'lists/index.html'
+    template_name = 'projects/index.html'
     context_object_name = 'lists'
 
 
@@ -44,7 +44,7 @@ class IndexView(ListView):
         # return List.objects.all().order_by('-created_at')
 
 
-class ListView(TemplateView):
+class ListView( TemplateView):
 
     template_name = 'lists/list_view.html'
 
@@ -53,7 +53,7 @@ class ListView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class Add_list(CreateView):
+class Add_list(LoginRequiredMixin, CreateView):
     # def get(self, request):
     #     form = ListForms()
     #     return render(request, 'lists/add.html', {'form': form})
@@ -118,7 +118,7 @@ class Add_list(CreateView):
 #             return render(request, 'lists/update.html', context={'form': form, 'list': list})
 
 
-class List_update(UpdateView):
+class List_update(LoginRequiredMixin, UpdateView):
     model = List
     template_name = 'lists/update.html'
     form_class= ListForms

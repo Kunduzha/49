@@ -6,7 +6,7 @@ from django.utils.http import urlencode
 
 from webapp.models import Project
 from webapp.forms import ListForms, SimpleSearchForm, ProjectForms
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 class IndexView_project(ListView):
     model = Project
     template_name = 'projects/index.html'
@@ -48,7 +48,7 @@ class ProjectView(DetailView):
     template_name = 'projects/project_view.html'
 
 
-class Add_project(CreateView):
+class Add_project(LoginRequiredMixin, CreateView):
     template_name = 'projects/create.html'
     model = Project
     form_class = ProjectForms
@@ -84,7 +84,7 @@ class Add_project(CreateView):
 #         else:
 #             return render(request, 'projects/update.html', context={'form': form, 'project': project})
 
-class ProjectUpdate(UpdateView):
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/update.html'
     form_class = ProjectForms
@@ -103,7 +103,7 @@ class ProjectUpdate(UpdateView):
 #         project.delete()
 #         return redirect('main_page')
 
-class Delete_Project(DeleteView):
+class Delete_Project(LoginRequiredMixin, DeleteView):
     template_name = 'projects/delete.html'
     model = Project
     context_object_name = 'project'

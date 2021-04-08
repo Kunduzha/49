@@ -6,18 +6,32 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Грандиозные проекты{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static "css/paginate_style.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
 
 
     <div class="container">
-    <nav>
-        <ul>
+    <nav class="navbar">
+        <ul class="menu">
+
+            <li>
+                <a href="{% url "main_page" %}"> На главную</a>
+            </li>
+{#            <li>#}
+{#                <a href="{% url 'project_more' %}">Задачи</a>#}
+{#            </li>#}
             {% include 'partial/navigation.html' %}
-            {% block menu %}
-            {% endblock %}
+
+            {% if user.is_authenticated %}
+                {% block menu %}{% endblock %}
+                <li class="'menu-right"><a href="{% url 'logout' %}" class="nav-link">Выход</a></li>
+                <li class="'menu-right"> Привет {{ user.username }}!</li>
+            {% else %}
+                <li class="'menu-right"><a href="{% url 'login' %}" class="nav-link">Вход</a></li>
+            {% endif %}
+
         </ul>
     </nav>
 
