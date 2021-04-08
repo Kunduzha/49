@@ -136,7 +136,7 @@ class List_update(UpdateView):
 #         list.delete()
 #         return redirect('main_page')
 
-class Delete_list(DeleteView):
+class Delete_list(LoginRequiredMixin, DeleteView):
     model = List
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
