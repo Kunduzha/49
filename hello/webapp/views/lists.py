@@ -118,7 +118,7 @@ class Add_list(LoginRequiredMixin, CreateView):
 #             return render(request, 'lists/update.html', context={'form': form, 'list': list})
 
 
-class List_update(UpdateView):
+class List_update(LoginRequiredMixin, UpdateView):
     model = List
     template_name = 'lists/update.html'
     form_class= ListForms
