@@ -13,10 +13,10 @@ class MyUserCreationForm(forms.ModelForm):
         password_confirm = cleaned_data.get('password_confirm')
         if password and password_confirm and password != password_confirm:
             raise forms.ValidationError('Пароли не совпадают!')
-        first_name = cleaned_data.get('first_name')
-        last_name = cleaned_data.get('last_name')
-        if not first_name and not last_name:
-            raise ValidationError('Заполните хотя бы одно поле first_name или last_name!')
+        # first_name = cleaned_data.get('first_name')
+        # last_name = cleaned_data.get('last_name')
+        # if not first_name and not last_name:
+        #     raise ValidationError('Заполните хотя бы одно поле first_name или last_name!')
 
     def save(self, commit=True):
         user = super().save(commit=False)
