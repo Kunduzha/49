@@ -17,7 +17,7 @@
         <ul class="menu">
 
             <li>
-                <a href="{% url "main_page" %}"> На главную</a>
+                <a href="{% url "project:main_page" %}"> На главную</a>
             </li>
 {#            <li>#}
 {#                <a href="{% url 'project_more' %}">Задачи</a>#}
@@ -26,10 +26,11 @@
 
             {% if user.is_authenticated %}
                 {% block menu %}{% endblock %}
-                <li class="'menu-right"><a href="{% url 'logout' %}" class="nav-link">Выход</a></li>
+                <li class="'menu-right"><a href="{% url 'account:logout' %}?next = {{ request.get_full_path }}" class="nav-link">Выход</a></li>
                 <li class="'menu-right"> Привет {{ user.username }}!</li>
             {% else %}
-                <li class="'menu-right"><a href="{% url 'login' %}" class="nav-link">Вход</a></li>
+                <li class="'menu-right"><a href="{% url 'account:login' %}?next = {{ request.get_full_path }}" class="nav-link">Вход</a></li>
+                <li class="'menu-right"><a href="{% url 'account:create' %}?next = {{ request.get_full_path }}" class="nav-link">Регистрация</a></li>
             {% endif %}
 
         </ul>

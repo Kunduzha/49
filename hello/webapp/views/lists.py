@@ -82,7 +82,7 @@ class Add_list(LoginRequiredMixin, CreateView):
         list.project = project
         list.save()
         form.save_m2m()
-        return redirect('project_more', pk = project.pk)
+        return redirect('project:more', pk = project.pk)
 
 
 # class List_update(TemplateView):
@@ -125,7 +125,7 @@ class List_update(LoginRequiredMixin, UpdateView):
     context_object_name = 'list'
 
     def get_success_url(self):
-        return reverse('project_more', kwargs={'pk': self.object.project.pk})
+        return reverse('project:more', kwargs={'pk': self.object.project.pk})
 
 # class Delete_list(View):
 #     def get(self, request, **kwargs):
@@ -142,4 +142,4 @@ class Delete_list(LoginRequiredMixin, DeleteView):
         return self.delete(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('project_more', kwargs={'pk': self.object.project.pk})
+        return reverse('project:more', kwargs={'pk': self.object.project.pk})
