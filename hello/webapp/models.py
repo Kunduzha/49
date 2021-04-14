@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from webapp.validators import  MinLengthValidators, str_value
@@ -67,6 +68,7 @@ class Project(BaseModel):
     begin_at = models.DateField(blank=False, null=False, verbose_name='Дата начало')
     end_at = models.DateField(blank=True, null=True, verbose_name='Дата окончания')
 
+    user = models.ManyToManyField(get_user_model(), null=False, blank=False,  related_name='projects', verbose_name='Пользователь')
 
     title = models.CharField(max_length=30, blank=False, null=False, verbose_name='заголовка',
                              validators=[MinLengthValidators(2), str_value])
@@ -78,3 +80,7 @@ class Project(BaseModel):
         db_table = 'project'
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
+        permissions = [
+            ('delete_user', 'удаление пользователя из проекта'),
+            ('add_user', 'добавление пользователя в проект'),
+        ]
