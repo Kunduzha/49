@@ -2,6 +2,8 @@ from webapp.views import IndexView_project, ListView, Add_list, List_update, Del
     Add_project, ProjectUpdate, Delete_Project
 from django.urls import path
 
+from webapp.views.projects import AddUser
+
 app_name = 'project'
 
 urlpatterns = [
@@ -15,5 +17,6 @@ urlpatterns = [
     path('list/<int:pk>/', ListView.as_view(), name='list_more'),
     path('delete/<int:pk>/', Delete_list.as_view(), name='delete_list'),
     path('update/<int:pk>/', List_update.as_view(), name='list_update'),
+    path('add_user_to_project/<int:pk>/', AddUser.as_view(), name='add_user'),
 
 ]

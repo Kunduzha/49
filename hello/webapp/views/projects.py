@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.urls import reverse_lazy
 from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -5,7 +6,7 @@ from django.db.models import Q
 from django.utils.http import urlencode
 
 from webapp.models import Project
-from webapp.forms import ListForms, SimpleSearchForm, ProjectForms
+from webapp.forms import ListForms, SimpleSearchForm, ProjectForms, ProjectUserForms
 from django.contrib.auth.mixins import LoginRequiredMixin
 class IndexView_project(ListView):
     model = Project
@@ -90,6 +91,7 @@ class ProjectUpdate(LoginRequiredMixin, UpdateView):
     form_class = ProjectForms
     context_object_name = 'project'
 
+
     def get_success_url(self):
         return reverse('project:more', kwargs={'pk': self.object.pk})
 
@@ -108,3 +110,15 @@ class Delete_Project(LoginRequiredMixin, DeleteView):
     model = Project
     context_object_name = 'project'
     success_url = reverse_lazy('project:main_page')
+
+
+class AddUser(LoginRequiredMixin, UpdateView):
+    model = Project
+    template_name = 'projects/add_delete_user.html'
+    form_class = ProjectUserForms
+    # user = get_object_or_404(User)
+    # model = Project
+    # template_name = 'add_delete_user.html'
+
+    def get_success_url(self):
+        return reverse('project:more', kwargs = {'pk': self.object.pk})

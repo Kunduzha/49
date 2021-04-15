@@ -26,7 +26,13 @@ class SimpleSearchForm(forms.Form):
 
 class ProjectForms(forms.ModelForm):
 
-
     class Meta:
         model = Project
         fields = ['begin_at', 'end_at', 'title', 'description']
+
+
+class ProjectUserForms(forms.ModelForm):
+
+    class Meta:
+        model = Project
+        fields = ['user']
