@@ -7,7 +7,9 @@ from django.utils.http import urlencode
 
 from webapp.models import Project
 from webapp.forms import ListForms, SimpleSearchForm, ProjectForms, ProjectUserForms
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
+
 class IndexView_project(ListView):
     model = Project
     template_name = 'projects/index.html'
@@ -49,10 +51,12 @@ class ProjectView(DetailView):
     template_name = 'projects/project_view.html'
 
 
-class Add_project(LoginRequiredMixin, CreateView):
+class Add_project(PermissionRequiredMixin, CreateView):
     template_name = 'projects/create.html'
     model = Project
     form_class = ProjectForms
+    permission_required = 'webapp.add_project'
+
 
     def get_success_url(self):
         return reverse('project:more', kwargs = {'pk': self.object.pk})
@@ -85,11 +89,12 @@ class Add_project(LoginRequiredMixin, CreateView):
 #         else:
 #             return render(request, 'projects/update.html', context={'form': form, 'project': project})
 
-class ProjectUpdate(LoginRequiredMixin, UpdateView):
+class ProjectUpdate(PermissionRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/update.html'
     form_class = ProjectForms
     context_object_name = 'project'
+    permission_required = 'webapp.'
 
 
     def get_success_url(self):
@@ -112,10 +117,12 @@ class Delete_Project(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('project:main_page')
 
 
-class AddUser(LoginRequiredMixin, UpdateView):
+class AddUser(PermissionRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/add_delete_user.html'
     form_class = ProjectUserForms
+    permission_required = 'webapp.add_delete_user'
+    permission_denied_message = 'У вас нет полномочия для удаления проекта'
     # user = get_object_or_404(User)
     # model = Project
     # template_name = 'add_delete_user.html'

@@ -3,9 +3,15 @@
 
 
     <div class="row mx-md-n5">
-  <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:update" project.pk %}">Изменить проекта</a></div></div>
-  <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:delete" project.pk %}">Удалить проекта</a></div></div>
-    <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:add_user" project.pk %}">Добавить пользоваетеля</a></div></div>
+    {% if perms.webapp.change_project %}
+        <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:update" project.pk %}">Изменить проекта</a></div></div>
+    {% endif %}
+    {% if perms.webapp.delete_project %}
+        <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:delete" project.pk %}">Удалить проекта</a></div></div>
+    {% endif %}
+    {% if perms.webapp.add_delete_user %}
+            <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:add_user" project.pk %}">Добавить пользоваетеля</a></div></div>
+    {% endif %}
     </div>
 {% endblock %}
 
@@ -62,8 +68,12 @@
 
                 {% endfor %}
                 <div class="row mx-md-n5">
+{% if perms.webapp.change_list %}
   <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:list_update" list.pk %}">Изменить</a></div></div>
+{% endif %}
+{% if perms.webapp.delete_list %}
   <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:delete_list" list.pk %}">Удалить</a></div></div>
+{% endif %}
 
 
     </div>
@@ -79,6 +89,7 @@
 
 
     </div>
+{% if perms.webapp.add_list %}
     <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:adding_list" project.pk %}"> добавить задачку</a></div></div>
-
+{% endif %}
 {% endblock %}

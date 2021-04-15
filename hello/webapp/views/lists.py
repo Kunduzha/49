@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, TemplateView, RedirectView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from django.utils.http import urlencode
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from webapp.models import List, Types, Project
 from webapp.forms import ListForms, SimpleSearchForm
 
@@ -53,7 +53,7 @@ class ListView( TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class Add_list(LoginRequiredMixin, CreateView):
+class Add_list(PermissionRequiredMixin, CreateView):
     # def get(self, request):
     #     form = ListForms()
     #     return render(request, 'lists/add.html', {'form': form})
@@ -75,6 +75,11 @@ class Add_list(LoginRequiredMixin, CreateView):
     model = List
     template_name = 'lists/add.html'
     form_class = ListForms
+    permission_required = 'webapp.add_list'
+    permission_denied_message = 'У Вас нет разрешения на добавление задачи'
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in Project.objects.get(pk=self.kwargs.get('pk')).user.all()
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk = self.kwargs.get('pk'))
@@ -118,11 +123,15 @@ class Add_list(LoginRequiredMixin, CreateView):
 #             return render(request, 'lists/update.html', context={'form': form, 'list': list})
 
 
-class List_update(LoginRequiredMixin, UpdateView):
+class List_update(PermissionRequiredMixin, UpdateView):
     model = List
     template_name = 'lists/update.html'
     form_class= ListForms
     context_object_name = 'list'
+    permission_required = 'webapp.change_list'
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.object.project.user.all()
 
     def get_success_url(self):
         return reverse('project:more', kwargs={'pk': self.object.project.pk})
@@ -136,8 +145,12 @@ class List_update(LoginRequiredMixin, UpdateView):
 #         list.delete()
 #         return redirect('main_page')
 
-class Delete_list(LoginRequiredMixin, DeleteView):
+class Delete_list(PermissionRequiredMixin, DeleteView):
     model = List
+    permission_required = 'webapp.delete_list'
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.object.project.user.all()
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
 

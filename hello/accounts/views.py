@@ -56,7 +56,7 @@ def register_view(request, *args, **kwargs):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('webapp:main_page')
+            return redirect('project:main_page')
     else:
         form = MyUserCreationForm()
     return render(request, 'registration/user_create.html', context = {'form':form})
