@@ -79,7 +79,9 @@ class Add_list(PermissionRequiredMixin, CreateView):
     permission_denied_message = 'У Вас нет разрешения на добавление задачи'
 
     def has_permission(self):
-        return super().has_permission() and self.request.user in Project.objects.get(pk=self.kwargs.get('pk')).user.all()
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        print(self.request.user, project.user.all(), project.pk)
+        return super().has_permission() and self.request.user in project.user.all()
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk = self.kwargs.get('pk'))
@@ -131,7 +133,7 @@ class List_update(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_list'
 
     def has_permission(self):
-        return super().has_permission() and self.request.user in self.object.project.user.all()
+        return super().has_permission() and self.request.user in self.get_object().project.user.all()
 
     def get_success_url(self):
         return reverse('project:more', kwargs={'pk': self.object.project.pk})
@@ -150,7 +152,7 @@ class Delete_list(PermissionRequiredMixin, DeleteView):
     permission_required = 'webapp.delete_list'
 
     def has_permission(self):
-        return super().has_permission() and self.request.user in self.object.project.user.all()
+        return super().has_permission() and self.request.user in self.get_object().project.user.all()
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
 

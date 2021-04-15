@@ -94,7 +94,7 @@ class ProjectUpdate(PermissionRequiredMixin, UpdateView):
     template_name = 'projects/update.html'
     form_class = ProjectForms
     context_object_name = 'project'
-    permission_required = 'webapp.'
+    permission_required = 'webapp.change_project'
 
 
     def get_success_url(self):
@@ -110,11 +110,12 @@ class ProjectUpdate(PermissionRequiredMixin, UpdateView):
 #         project.delete()
 #         return redirect('main_page')
 
-class Delete_Project(LoginRequiredMixin, DeleteView):
+class Delete_Project(PermissionRequiredMixin, DeleteView):
     template_name = 'projects/delete.html'
     model = Project
     context_object_name = 'project'
     success_url = reverse_lazy('project:main_page')
+    permission_required = 'webapp.delete_project'
 
 
 class AddUser(PermissionRequiredMixin, UpdateView):
@@ -126,6 +127,10 @@ class AddUser(PermissionRequiredMixin, UpdateView):
     # user = get_object_or_404(User)
     # model = Project
     # template_name = 'add_delete_user.html'
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in Project.objects.get(
+            pk=self.kwargs.get('pk')).user.all()
 
     def get_success_url(self):
         return reverse('project:more', kwargs = {'pk': self.object.pk})

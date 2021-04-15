@@ -89,7 +89,7 @@
 
 
     </div>
-{% if perms.webapp.add_list %}
+{% if perms.webapp.add_list and request.user in project.user.all %}
     <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:adding_list" project.pk %}"> добавить задачку</a></div></div>
 {% endif %}
 {% endblock %}
