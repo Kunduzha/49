@@ -3,6 +3,7 @@
 from django.contrib.auth import login, get_user_model
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
+from django.views import View
 from django.views.generic import DetailView
 
 from accounts.forms import MyUserCreationForm
@@ -57,6 +58,7 @@ def register_view(request, *args, **kwargs):
         form = MyUserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
+
             login(request, user)
             return redirect('project:main_page')
     else:
@@ -79,3 +81,8 @@ class UserDetailView(DetailView):
         kwargs['projects'] = page.object_list
         kwargs['is_paginated'] = page.has_other_pages()
         return super().get_context_data(**kwargs)
+
+
+
+
+

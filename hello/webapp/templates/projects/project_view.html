@@ -29,6 +29,16 @@
 
     <div >{{ article.text }}</div>
 
+    <p> Список пользователей:
+            {% for user in project.user.all %}
+
+            <a href="{% url 'account:detail' user.pk %}">{{ user.username }}</a>
+
+            {% endfor %}
+
+    </p>
+
+
     <hr/>
 
     <h3>Задачи:</h3>
@@ -47,6 +57,7 @@
       <th scope="col">Заголовок</th>
       <th scope="col">Статус</th>
       <th scope="col">Тип</th>
+
     </tr>
   </thead>
   <tbody>

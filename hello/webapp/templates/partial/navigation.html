@@ -6,4 +6,9 @@
     {% if perms.webapp.add_project %}
   <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "project:adding" %}"> добавить проект</a></div></div>
     {% endif %}
+{% if perms.accounts.view_users %}
+  <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url 'project:all_users' %}" > Все пользоваетели</a></div></div>
+    {% endif %}
 </div>
+
+

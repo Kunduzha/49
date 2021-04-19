@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.urls import reverse_lazy
@@ -134,3 +135,9 @@ class AddUser(PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('project:more', kwargs = {'pk': self.object.pk})
+
+class ProjectUsers(PermissionRequiredMixin, ListView):
+    model = get_user_model()
+    template_name = 'projects/users.html'
+    context_object_name = 'users'
+    permission_required = 'accounts.view_users'
