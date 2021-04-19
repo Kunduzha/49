@@ -13,10 +13,10 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-    def save(self, *args, **kwargs):
-        user = super(Profile, self).save(*args, **kwargs)
-        Profile.objects.create(user=user)
-        return user
+    # def save(self, *args, **kwargs):
+    #     user = super(Profile, self).save(*args, **kwargs)
+    #     Profile.objects.create(user=user)
+    #     return user
 
     class Meta:
         db_table = 'profiles'

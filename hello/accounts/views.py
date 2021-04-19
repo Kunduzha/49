@@ -51,6 +51,7 @@ from accounts.forms import MyUserCreationForm
 # class LogoutView(LogoutView):
 #     logout(request)
 #     return redirect('main_page')
+from accounts.models import Profile
 
 
 def register_view(request, *args, **kwargs):

@@ -21,10 +21,11 @@ class MyUserCreationForm(forms.ModelForm):
             raise ValidationError('Заполните хотя бы одно поле first_name или last_name!')
 
     def save(self, commit=True):
-        user = super().save(commit=False)
+        user = super().save(commit=True)
         user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()
+            Profile.objects.create(user=user)
         return user
 
     class Meta:
