@@ -16,37 +16,35 @@
                  {% include 'projects/pagination.html' %}
 
             {% endif %}
-             <table class="table">
-  <caption>List of users</caption>
-  <thead>
-    <tr>
-      <th scope="col">Заголовок</th>
-      <th scope="col">Описание</th>
-
-    </tr>
-  </thead>
-  <tbody>
-            {% for project in projects %}
-                <tr>
-{#            <td class="table-success">#}
-{#                <a href="{% url 'list_more' list.pk %}">{{ list.title }}</a>#}
+{#             <table class="table">#}
+{#  <caption>List of users</caption>#}
+{#  <thead>#}
+{#    <tr>#}
+{#      <th scope="col">Заголовок</th>#}
+{#      <th scope="col">Описание</th>#}
+{##}
+{#    </tr>#}
+{#  </thead>#}
+{#  <tbody>#}
+{#            {% for project in projects %}#}
+{#                <tr>#}
+{#
+{#            <td class="table-active">#}
+{##}
+{#                заголовок:  <a href="{% url 'project:more' project.pk %}">{{ project.title}}</a>#}
 {#            </td>#}
-            <td class="table-active">
+{##}
+{#            <td class="table-active">#}
+{#                описание: {{ project.description }}#}
+{#            </td>#}
+{##}
+{##}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#    </tbody>#}
+{#</table>#}
 
-                заголовок:  <a href="{% url 'project:more' project.pk %}">{{ project.title}}</a>
-            </td>
-
-            <td class="table-active">
-                описание: {{ project.description }}
-            </td>
-
-
-                </tr>
-            {% endfor %}
-    </tbody>
-</table>
-
-
+{% include 'partial/project_list.html' %}
         {% endif %}
     </div>
 {% endblock content %}

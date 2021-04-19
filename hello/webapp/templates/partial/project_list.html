@@ -1,0 +1,39 @@
+
+
+<table class="table">
+  <caption>List of users</caption>
+  <thead>
+    <tr>
+      <th scope="col">Заголовок</th>
+      <th scope="col">Описание</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+{% for project in projects %}
+
+{#        <h3><a href="{% url "project:more" project.pk %}">{{ project.title }}</a></h3>#}
+{#        <p>#}
+{#            <label for="selected_projects-{{ project.pk }}">Select:</label>#}
+{#            <input type="checkbox" name="selected_articles"#}
+{#                   id="selected_projects-{{ project.pk }}-{{ project.pk }}" value="{{ project.pk }}">#}
+{##}
+{#        </p>#}
+
+
+     <tr>
+            <td class="table-active">
+
+                заголовок:  <a href="{% url 'project:more' project.pk %}">{{ project.title}}</a>
+            </td>
+
+            <td class="table-active">
+                описание: {{ project.description }}
+            </td>
+
+
+                </tr>
+{% empty %}
+    <h2 class="text-center">Нету проектов</h2>
+{% endfor %}
