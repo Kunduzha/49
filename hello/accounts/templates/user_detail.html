@@ -6,6 +6,10 @@
 {#    <li><a href="#">Смена пароля</a></li>#}
 {#{% endblock %}#}
 {% block content %}
+    {% block menu_links %}
+        <li><a href="{% url 'account:user_change' user_obj%}"></a>Редактировать!!!</li>
+    {% endblock %}
+
     <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
     {% if user_obj.profile.avatar %}
         <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
