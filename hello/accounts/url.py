@@ -4,7 +4,7 @@ from django.contrib import admin
 # from accounts.views import login_view, logout_view
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path, include
-from accounts.views import register_view, UserDetailView, UserChangeView
+from accounts.views import register_view, UserDetailView, UserChangeView, UserPasswordChangeView
 
 app_name = 'account'
 urlpatterns = [
@@ -15,7 +15,8 @@ urlpatterns = [
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
     path('create/', register_view, name = 'create'),
     path('detail/<int:pk>', UserDetailView.as_view(), name = 'detail'),
-    path('<int:pk>/change', UserChangeView.as_view(), name = 'user_change'),
+    path('change/', UserChangeView.as_view(), name = 'user_change'),
+    path('<int:pk>/password_change', UserPasswordChangeView.as_view(), name = 'password_change')
 
 
 

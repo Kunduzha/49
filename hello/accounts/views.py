@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import DetailView, UpdateView
 
-from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
+from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm, PasswordChangeForm
 
 # Create your views here.
 
@@ -103,7 +103,7 @@ class UserChangeView(LoginRequiredMixin, UpdateView):
         profile_form = self.get_profile_form()
         if form.is_valid() and profile_form.is_valid():
             return self.form_valid(form, profile_form)
-        else:return self.form_invalid(form, profile_form)
+        else : return self.form_invalid(form, profile_form)
 
     def form_valid(self, form, profile_form):
         response = super().form_valid(form)
@@ -113,7 +113,8 @@ class UserChangeView(LoginRequiredMixin, UpdateView):
     def form_invalid(self, form, profile_form):
         context = self.get_context_data(form=form, profile_form = profile_form)
 
-
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
     def get_profile_form(self):
@@ -127,3 +128,13 @@ class UserChangeView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('account:detail', kwargs = {'pk':self.object.pk})
 
+
+class UserPasswordChangeView(UpdateView):
+    model = get_user_model()
+    template_name = 'user_password_change.html'
+    form_class = PasswordChangeForm
+    context_object_name = 'user_obj'
+
+
+    def get_success_url(self):
+        return reverse('account:login')
