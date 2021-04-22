@@ -8,6 +8,8 @@ class Profile(models.Model):
         null=True, blank=True, verbose_name='Дата рождения'
     )
     avatar = models.ImageField(upload_to='avatars', null = True, blank=True)
+    about_me = models.TextField(null=True, blank=True, verbose_name='О себе', max_length=2000)
+    github = models.URLField(blank=True, null=True, verbose_name='Ссылка на GitHub', max_length=300)
 
 
     def __str__(self):

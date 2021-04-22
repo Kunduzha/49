@@ -1,5 +1,6 @@
 # from django.contrib.auth import authenticate, login, logout
 # from django.shortcuts import render, redirect,
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
@@ -128,13 +129,19 @@ class UserChangeView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('account:detail', kwargs = {'pk':self.object.pk})
 
+#
+# class UserPasswordChangeView(UpdateView):
+#     model = get_user_model()
+#     template_name = 'user_password_change.html'
+#     form_class = PasswordChangeForm
+#     context_object_name = 'user_obj'
+#
+#
+#     def get_success_url(self):
+#         return reverse('account:login')
 
-class UserPasswordChangeView(UpdateView):
-    model = get_user_model()
+class UserPasswordChangeView(PasswordChangeView):
     template_name = 'user_password_change.html'
-    form_class = PasswordChangeForm
-    context_object_name = 'user_obj'
-
 
     def get_success_url(self):
-        return reverse('account:login')
+        return reverse('account:detail', kwargs={'pk': self.request.user.pk})

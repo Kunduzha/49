@@ -7,8 +7,10 @@
 {#{% endblock %}#}
 {% block content %}
     {% block menu_links %}
+        {% if request.user == user_obj %}
         <li><a href="{% url 'account:user_change' %}">Редактировать!!!</a></li>
         <li><a href="{% url 'account:password_change' user_obj.pk %}">Смена пароля</a></li>
+        {% endif %}
     {% endblock %}
 
     <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
