@@ -1,5 +1,60 @@
 [
 {
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": 4,
+    "birth_date": "2021-04-21",
+    "avatar": "avatars/1556909100194766269.jpg",
+    "about_me": "yyaaaahooooooooooooooooo, yyaaaahooooooooooooooooo, yyaaaahooooooooooooooooo, yyaaaahooooooooooooooooo, yyaaaahooooooooooooooooo, yyaaaahooooooooooooooooo, yyaaaahooooooooooooooooo,",
+    "github": "https://github.com/md5orsha256/django-hallo-app"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 10,
+    "birth_date": null,
+    "avatar": "",
+    "about_me": null,
+    "github": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 3,
+  "fields": {
+    "user": 11,
+    "birth_date": null,
+    "avatar": "",
+    "about_me": null,
+    "github": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 4,
+  "fields": {
+    "user": 12,
+    "birth_date": null,
+    "avatar": "",
+    "about_me": null,
+    "github": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 5,
+  "fields": {
+    "user": 13,
+    "birth_date": null,
+    "avatar": "avatars/original.jpeg",
+    "about_me": null,
+    "github": null
+  }
+},
+{
   "model": "webapp.status",
   "pk": 1,
   "fields": {
@@ -277,51 +332,6 @@
     "title": "hhhhhhhhhhh",
     "description": "hjhkhkhjkhjkhjkhjklhjkhjklh",
     "user": []
-  }
-},
-{
-  "model": "accounts.profile",
-  "pk": 1,
-  "fields": {
-    "user": 4,
-    "birth_date": "2021-04-21",
-    "avatar": "avatars/balloon.jpg"
-  }
-},
-{
-  "model": "accounts.profile",
-  "pk": 2,
-  "fields": {
-    "user": 10,
-    "birth_date": null,
-    "avatar": ""
-  }
-},
-{
-  "model": "accounts.profile",
-  "pk": 3,
-  "fields": {
-    "user": 11,
-    "birth_date": null,
-    "avatar": ""
-  }
-},
-{
-  "model": "accounts.profile",
-  "pk": 4,
-  "fields": {
-    "user": 12,
-    "birth_date": null,
-    "avatar": ""
-  }
-},
-{
-  "model": "accounts.profile",
-  "pk": 5,
-  "fields": {
-    "user": 13,
-    "birth_date": null,
-    "avatar": ""
   }
 }
 ]
